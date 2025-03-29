@@ -42,8 +42,7 @@ class Date implements Comparable<Date> {
         this.month = month;
         this.day = day;
     }
-    int[] dainmo = {31,28,31,30,31,30,31,31,30,31,30,31};
-    String[] monthsNames = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+    int[] dayInMonths = {31,28,31,30,31,30,31,31,30,31,30,31};
     boolean isValid(int year, int month, int day){
         if(month < 1 || month > 12) {
             return false;
@@ -57,7 +56,7 @@ class Date implements Comparable<Date> {
 
 
             } else {
-                if(day < 1 || day > dainmo[month-1]) {
+                if(day < 1 || day > dayInMonths[month-1]) {
                     return false;
                 } else {
                     return true;
@@ -83,11 +82,11 @@ class Date implements Comparable<Date> {
         if (!isValid(year, month, day)) {
             return "Invalid date";
         }
-        int[] monthOffvalues = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+        int[] monthOffValues = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
         if (month < 3) {
             year -= 1;
         }
-        int dayOfWeek = (year + year/4 - year/100 + year/400 + monthOffvalues[month - 1] + day) % 7;
+        int dayOfWeek = (year + year/4 - year/100 + year/400 + monthOffValues[month - 1] + day) % 7;
         String[] daysOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
         return daysOfWeek[dayOfWeek];
     }
